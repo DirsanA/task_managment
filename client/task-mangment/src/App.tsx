@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function App() {
   const [count, setCount] = useState<number>(0);
-
+  // typescript
   return (
     <div>
       <h1>Hello Vite + React + TypeScript!</h1>
