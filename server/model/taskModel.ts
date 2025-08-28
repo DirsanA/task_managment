@@ -20,6 +20,12 @@ const taskSchema: Schema<Itask> = new Schema({
     type: String,
     required: true,
   },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
 });
 
-const userModel: Model<Itask> = mongoose.model("Task", taskSchema);
+const taskModel: Model<Itask> = mongoose.model("Task", taskSchema);
+export default taskModel;
