@@ -6,7 +6,7 @@ interface AuthRequest extends Request {
   userId?: string;
 }
 
-// Create a task
+// Create a tasks
 export async function taskCreate(req: AuthRequest, res: Response) {
   try {
     const { name, description, status } = req.body;
