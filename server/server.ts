@@ -1,12 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/config.js";
+import userRoute from "./routes/userRoutes.js";
 import User from "./model/userModel.js"; // capitalized by convention
 
 dotenv.config();
 
 const app = express();
 app.use(express.json()); // parse JSON bodies
+app.use("/", userRoute);
 
 const port: number = Number(process.env.PORT) || 3000;
 
