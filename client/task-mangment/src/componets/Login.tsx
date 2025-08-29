@@ -1,71 +1,49 @@
-import { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 
-const CreateUser = () => {
-  const [name, setName] = useState("");
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // handle form submit for task
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
-      const userResponse = await axios.post("http://localhost:3000/postUser", {
-        name,
+      const response = await axios.post("http://localhost:3000/login", {
         email,
         password,
       });
-      console.log(userResponse);
-      setName("");
-      setEmail("");
-      setPassword("");
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
   }
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <input
-          value={name}
-          onChange={function (e) {
-            setName(e.target.value);
-          }}
-          type="text"
-          required
-          placeholder="Name "
-        />{" "}
-        <br />
-        {/* email form  */}
-        <br />
-        <input
           onChange={function (e) {
             setEmail(e.target.value);
           }}
-          value={email}
           type="email"
+          placeholder="email"
           required
-          placeholder="Email "
+          value={email}
         />{" "}
         <br />
         <br />
-        {/* password form */}
         <input
           onChange={function (e) {
             setPassword(e.target.value);
           }}
           type="password"
-          required
-          value={password}
           placeholder="password"
-        />{" "}
-        <br />
-        <br />
+          value={password}
+        />
         <button type="submit">Submit</button>
       </form>
     </div>
   );
 };
 
-export default CreateUser;
+export default Login;

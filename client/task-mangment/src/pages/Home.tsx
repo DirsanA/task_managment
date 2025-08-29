@@ -1,8 +1,10 @@
-import CreateUser from "../componets/createUser";
+// import CreateUser from "../componets/createUser";
+import Login from "../componets/Login";
 const Home = () => {
   return (
     <div>
-      <CreateUser></CreateUser>
+      {/* <CreateUser></CreateUser> */}
+      <Login />
     </div>
   );
 };
