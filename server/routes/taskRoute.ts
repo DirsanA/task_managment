@@ -5,6 +5,6 @@ import { authMiddleware } from "../middleware/authMidleware.js";
 const router = express.Router();
 
 // The middleware runs BEFORE taskCreate
-router.post("/tasks", authMiddleware, taskCreate);
+router.post("/task-create", authMiddleware, taskCreate);
 
 export default router;
