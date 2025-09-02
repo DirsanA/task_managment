@@ -8,6 +8,7 @@ import {
   CheckCircle,
   AlertCircle,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,6 +17,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -167,6 +169,9 @@ const Login = () => {
             Don't have an account?{" "}
             <a
               href="#"
+              onClick={function () {
+                navigate("/register");
+              }}
               className="font-medium text-blue-500 hover:text-blue-600"
             >
               Sign up

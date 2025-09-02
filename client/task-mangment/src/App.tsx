@@ -8,9 +8,12 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        {/* <Route path="/" element={<TaskDashboard></TaskDashboard>}></Route> */}
-        {/* <Route path="/" element={<WelcomePage />}></Route> */}
-        <Route path="/" element={<Registre />}></Route>
+        <Route
+          path="/task-bar"
+          element={<TaskDashboard></TaskDashboard>}
+        ></Route>
+        <Route path="/" element={<WelcomePage />}></Route>
+        <Route path="/register" element={<Registre />}></Route>
 
         <Route path="login" element={<Login />}></Route>
         <Route path="create-user" element={<CreateUser />}></Route>

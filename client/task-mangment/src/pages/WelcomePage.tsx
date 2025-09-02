@@ -61,7 +61,9 @@ const WelcomePage = () => {
 
           <div className="flex sm:flex-row flex-col gap-4">
             <button
-              onClick={() => setIsLogin(false)}
+              onClick={function () {
+                navigate("/login");
+              }}
               className="group flex justify-center items-center gap-3 bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl px-8 py-4 rounded-xl font-semibold text-white transition-all"
             >
               Get Started{" "}

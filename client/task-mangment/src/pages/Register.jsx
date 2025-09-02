@@ -9,6 +9,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 
+import { useNavigate } from "react-router-dom";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +18,7 @@ const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -181,6 +183,9 @@ const Register = () => {
           <p className="text-gray-600 text-sm">
             Already have an account?{" "}
             <a
+              onClick={function () {
+                navigate("/login");
+              }}
               href="#"
               className="font-medium text-blue-500 hover:text-blue-600"
             >
