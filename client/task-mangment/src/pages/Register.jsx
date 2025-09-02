@@ -14,6 +14,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
@@ -26,16 +27,24 @@ const Register = () => {
     setSuccessMessage("");
     setErrorMessage("");
 
+    if (password !== confirmPass) {
+      setErrorMessage("Password do not match");
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const response = await axios.post("http://localhost:3000/postUser", {
         name,
         email,
         password,
       });
+
       console.log(response);
       setEmail("");
       setPassword("");
       setName("");
+      setConfirmPass("");
       setSuccessMessage("Registered successfully!");
     } catch (error) {
       console.log(error);
@@ -135,6 +144,9 @@ const Register = () => {
               type="password"
               required
               placeholder="Confirm Password"
+              onClick={function (e) {
+                setConfirmPass(e.target.value);
+              }}
               className="py-3 pr-4 pl-10 border border-gray-200 focus:border-transparent rounded-lg focus:ring-2 focus:ring-blue-400 w-full transition"
             />
           </div>
