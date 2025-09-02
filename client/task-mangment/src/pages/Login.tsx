@@ -17,6 +17,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -30,13 +31,21 @@ const Login = () => {
         email,
         password,
       });
+
       console.log(response);
+
       setEmail("");
       setPassword("");
       setSuccessMessage("Logged in successfully!");
+
+      // navigate after showing success message for 1 second
+      setTimeout(() => {
+        navigate("/task-board");
+      }, 1000);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setErrorMessage("Failed to login. Please check your credentials.");
+      setTimeout(() => setErrorMessage(""), 3000);
     } finally {
       setIsLoading(false);
     }
@@ -156,12 +165,6 @@ const Login = () => {
               "Sign in"
             )}
           </button>
-
-          <div className="relative my-6">
-            <div className="absolute inset-0 flex items-center">
-              <div className="border-gray-300 border-t w-full"></div>
-            </div>
-          </div>
         </form>
 
         <div className="bg-gray-50 p-4 border-gray-100 border-t text-center">
@@ -169,9 +172,7 @@ const Login = () => {
             Don't have an account?{" "}
             <a
               href="#"
-              onClick={function () {
-                navigate("/register");
-              }}
+              onClick={() => navigate("/register")}
               className="font-medium text-blue-500 hover:text-blue-600"
             >
               Sign up
