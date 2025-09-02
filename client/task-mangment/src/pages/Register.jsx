@@ -8,8 +8,8 @@ import {
   CheckCircle,
   AlertCircle,
 } from "lucide-react";
-
 import { useNavigate } from "react-router-dom";
+
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,8 +28,9 @@ const Register = () => {
     setErrorMessage("");
 
     if (password !== confirmPass) {
-      setErrorMessage("Password do not match");
+      setErrorMessage("Passwords do not match");
       setIsLoading(false);
+      setTimeout(() => setErrorMessage(""), 3000);
       return;
     }
 
@@ -41,14 +42,22 @@ const Register = () => {
       });
 
       console.log(response);
+
+      // reset form fields
       setEmail("");
       setPassword("");
       setName("");
       setConfirmPass("");
+
       setSuccessMessage("Registered successfully!");
+      setTimeout(() => {
+        setSuccessMessage("");
+        navigate("/login");
+      }, 3000);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setErrorMessage("Failed to Register.");
+      setTimeout(() => setErrorMessage(""), 3000);
     } finally {
       setIsLoading(false);
     }
@@ -87,9 +96,7 @@ const Register = () => {
               type="text"
               required
               value={name}
-              onChange={function (e) {
-                setName(e.target.value);
-              }}
+              onChange={(e) => setName(e.target.value)}
               placeholder="Full Name"
               className="px-4 py-3 border border-gray-200 focus:border-transparent rounded-lg focus:ring-2 focus:ring-blue-400 w-full transition"
             />
@@ -143,10 +150,9 @@ const Register = () => {
             <input
               type="password"
               required
+              value={confirmPass}
+              onChange={(e) => setConfirmPass(e.target.value)}
               placeholder="Confirm Password"
-              onClick={function (e) {
-                setConfirmPass(e.target.value);
-              }}
               className="py-3 pr-4 pl-10 border border-gray-200 focus:border-transparent rounded-lg focus:ring-2 focus:ring-blue-400 w-full transition"
             />
           </div>
@@ -195,9 +201,7 @@ const Register = () => {
           <p className="text-gray-600 text-sm">
             Already have an account?{" "}
             <a
-              onClick={function () {
-                navigate("/login");
-              }}
+              onClick={() => navigate("/login")}
               href="#"
               className="font-medium text-blue-500 hover:text-blue-600"
             >
